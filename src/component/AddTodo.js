@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { v4 as uuidv4 } from 'uuid';
 import { FaPlusCircle } from "react-icons/fa";
 import './AddTodo.scss'; 
 import { addTodo } from '../reducers/todoReducer';

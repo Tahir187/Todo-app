@@ -1,5 +1,4 @@
 import "./App.css";
-import AddTodo from "./component/AddTodo";
 import TodoList from "./component/TodoList";
 
 
