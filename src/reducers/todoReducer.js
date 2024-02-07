@@ -1,36 +1,8 @@
-// src/reducers/todoReducer.js
-import {combineReducers} from "redux";
-import {firebaseReducer} from "react-redux-firebase";
-import {firestoreReducer} from "redux-firestore";
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { db } from '../services/firebase'; // Assuming you have Firebase initialized here
-
-// Define asynchronous action creator using createAsyncThunk
-export const addTodoAsync = createAsyncThunk(
-  'todos/addTodoAsync',
-  async (todo, { dispatch, getState }) => {
-    try {
-      await db.collection('todos').add(todo);
-      return todo;
-    } catch (error) {
-      console.error('Error adding todo:', error);
-      throw error;
-    }
-  }
-);
-
-export const rootReducer = combineReducers({
-    firebase: firebaseReducer,
-    firestore: firestoreReducer
-});
+import { createSlice } from '@reduxjs/toolkit';
 
 const todoSlice = createSlice({
   name: 'todos',
-  initialState: {
-    todos: [],
-    loading: false,
-    error: null,
-  },
+  initialState: [],
   reducers: {
     addTodo(state, action) {
       const newTodo = action.payload;

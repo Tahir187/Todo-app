@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
-import { addTodoAsync } from '../reducers/todoReducer';
 import { FaPlusCircle } from "react-icons/fa";
 import './AddTodo.scss'; 
-// import { addTodo } from '../services/crudFirebase';
+import { addTodo } from '../reducers/todoReducer';
 
 function AddTodo() {
   const [text, setText] = useState('');
@@ -13,7 +12,7 @@ function AddTodo() {
   const handleAddTodo = async () => {
     if (text.trim() !== '') {
       try {
-        await dispatch(addTodoAsync({ text, completed: false }));
+        await dispatch(addTodo({ text, completed: false }));
         setText('');
       } catch (error) {
         console.error('Error adding todo:', error);

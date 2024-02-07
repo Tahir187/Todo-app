@@ -1,32 +1,17 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+// src/components/TodoList.js
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import TodoItem from "./TodoItem";
 import AddTodo from "./AddTodo";
+import "./TodoList.scss";
 import { useNavigate } from "react-router-dom";
-import { getTodos } from '../services/crudFirebase'; // Assuming you have Firebase initialized here
-import { addTodo } from '../reducers/todoReducer';
+
 
 function TodoList() {
-  const dispatch = useDispatch();
-  const navigate = useNavigate(); // Use useNavigate hook
   const todos = useSelector((state) => state.todos);
   const itemsPerPage = 4; // Number of todos per page
   const [currentPage, setCurrentPage] = useState(1);
-
-  useEffect(() => {
-    const fetchTodos = async () => {
-      try {
-        const todosFromFirebase = await getTodos();
-        todosFromFirebase.forEach((todo) => {
-          dispatch(addTodo(todo));
-        });
-      } catch (error) {
-        console.error('Error fetching todos:', error);
-      }
-    };
-
-    fetchTodos();
-  }, [dispatch]);
+  const navigate = useNavigate(); // Use useNavigate hook
 
   const indexOfLastTodo = currentPage * itemsPerPage;
   const indexOfFirstTodo = indexOfLastTodo - itemsPerPage;

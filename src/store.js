@@ -1,18 +1,8 @@
-import thunk from 'redux-thunk';
+import { configureStore } from '@reduxjs/toolkit';
 import todoReducer from './reducers/todoReducer';
-import { firebaseReducer } from 'react-redux-firebase';
-import { firestoreReducer } from 'redux-firestore';
-import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 
-const middleware = [...getDefaultMiddleware(), thunk];
-
-const store = configureStore({
+export default configureStore({
   reducer: {
-    todos: todoReducer,
-    firebase: firebaseReducer,
-    firestore: firestoreReducer,
-  },
-  middleware: middleware,
+    todos: todoReducer
+  }
 });
-
-export default store;
